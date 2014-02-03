@@ -1,0 +1,3 @@
+Overwrite  any existing files.
+Update the database, user name and password in the import script.
+Run import.php script.
