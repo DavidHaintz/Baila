@@ -1,5 +1,18 @@
+Die Idee ist mir gekommen, als Atrax mit dem Webpanel vom Liphyria Bot aufgetaucht ist. Ein Webpanel für alle.
+Mit dem Projekt Baila habe ich das nun realisiert und ein sicheres Webpanel mit einfacher Erweiterungsmöglichkeit geschrieben. Ein paar XSS sind zwar noch möglich, doch das nur vom Adminpanel aus. Und wer schon einmal da drin ist, wird keine XSS-Attacke starten. Aber natürlich werden die auch bald gefixt.
 
+**Features:**
+- Integriertes IP2Country
+- Taskmanagement
+- Usermanagement
+- Bots können einen User zugeordnet werden
+- 3 Berechtigungsstufen
+- Debug-Modul (ermöglicht einfachere Auswertung der Fehler auf Remote-PCs)
+- Erweiterbar durch Module
 
+**Security:**
+- Verwendet prepared Statements für Datenbankabfragen (schnell & sicher)
+- Kodiert alle von außen kommenden Daten (keine XSS)
 
 
 # Screenshots
@@ -43,6 +56,8 @@ Debug:
 ![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/debug.PNG "Debug")
 
 
+
+# Developer Note
 
 Task-Aufruf: gate.php?hwid=botHWID&os=botOS&pwd=123456
 Plugin-Aufruf: gate.php?hwid=botHWID&os=botOS&pwd=123456&plugin-param=bla
