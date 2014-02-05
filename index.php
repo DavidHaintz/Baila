@@ -57,7 +57,7 @@ if (!db_table_exists('tasks'))
 {
 	db_query('CREATE TABLE IF NOT EXISTS `tasks` (
 			`id` int(11) NOT NULL AUTO_INCREMENT,
-			`countries` TEXT NOT NULL default \'\',
+			`countries` TEXT,
 			`command` varchar(255) NOT NULL,
 			`start` TIMESTAMP NOT NULL default 0,
 			`stop` TIMESTAMP NOT NULL default 0,
