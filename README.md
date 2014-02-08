@@ -17,47 +17,47 @@ Mit dem Projekt Baila habe ich das nun realisiert und ein sicheres Webpanel mit 
 
 # Screenshots
 Login:
-![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/login.PNG "Login")
+![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/login.PNG "Login")
 
 
 Stats Infections:
-![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/stats1.PNG "Stats Infections")
+![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/stats1.PNG "Stats Infections")
 
 
 Stats Countries:
-![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/stats2.PNG "Stats Countries")
+![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/stats2.PNG "Stats Countries")
 
 
 Stats OSes:
-![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/stats3.PNG "Stats OSes")
+![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/stats3.PNG "Stats OSes")
 
 
 Stats Online/Offline:
-![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/stats4.PNG "Stats Online/Offline")
+![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/stats4.PNG "Stats Online/Offline")
 
 
 Bots:
-![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/bots.PNG "Bots")
+![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/bots.PNG "Bots")
 
 
 Tasks overview:
-![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/tasks1.PNG "Tasks overview")
+![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/tasks1.PNG "Tasks overview")
 
 
 Create task:
-![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/tasks2.PNG "Create task")
+![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/tasks2.PNG "Create task")
 
 
 Users overview:
-![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/users1.PNG "Users overview")
+![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/users1.PNG "Users overview")
 
 
 Create user:
-![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/users2.PNG "Create user")
+![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/users2.PNG "Create user")
 
 
 Debug:
-![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/debug.PNG "Debug")
+![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/debug.PNG "Debug")
 
 
 
