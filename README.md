@@ -32,6 +32,10 @@ Stats OSes:
 ![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/stats3.PNG "Stats OSes")
 
 
+Stats Online/Offline:
+![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/stats4.PNG "Stats Online/Offline")
+
+
 Bots:
 ![alt text](https://raw2.github.com/IRET0x00/Baila/master/screens/bots.PNG "Bots")
 
