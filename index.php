@@ -76,7 +76,7 @@ if (!db_table_exists('sentTasks'))
 	db_query('CREATE TABLE IF NOT EXISTS `sentTasks` (
 			`id` int(5) NOT NULL auto_increment,
 			`tid` int(5) NOT NULL default -1,
-			`hwid` varchar(128) NOT NULL default "",
+			`hwid` varchar(65) NOT NULL default "",
 			PRIMARY KEY (`id`)
 			);');
 	echo "Installed sentTasks table.<br />";

