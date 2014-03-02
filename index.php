@@ -77,6 +77,7 @@ if (!db_table_exists('sentTasks'))
 			`id` int(5) NOT NULL auto_increment,
 			`tid` int(5) NOT NULL default -1,
 			`hwid` varchar(65) NOT NULL default "",
+			`status` int(1) NOT NULL default 0, /* 0 sent, 1 executed, -1 failed */
 			PRIMARY KEY (`id`)
 			);');
 	echo "Installed sentTasks table.<br />";
@@ -108,6 +109,17 @@ if (db_table_empty('settings'))
 }
 if ($install)
 	die('');
+
+// Update statss
+$stmt = db_query("SELECT `id` FROM `tasks`");
+while ($row = $stmt->fetch())
+{
+	db_query("UPDATE `tasks` SET
+					`received` = (SELECT COUNT(`id`) FROM `sentTasks` WHERE `tid` = `tasks`.`id`),
+					`executed` = (SELECT COUNT(`id`) FROM `sentTasks` WHERE `status` = 1 AND `tid` = `tasks`.`id`),
+					`failed` = (SELECT COUNT(`id`) FROM `sentTasks` WHERE `status` = -1 AND `tid` = `tasks`.`id`)
+				WHERE `uid` = -1 OR `uid` = :1", getUID());
+}
 
 
 if (!isLoggedIn())

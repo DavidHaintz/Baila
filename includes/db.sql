@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS `sentTasks` (
 `id` int(5) NOT NULL auto_increment,
 `tid` int(5) NOT NULL default -1,
 `hwid` varchar(65) NOT NULL default "",
+`status` int(1) NOT NULL default 0, /* 0 sent, 1 executed, -1 failed */
 PRIMARY KEY (`id`)
 );
 

