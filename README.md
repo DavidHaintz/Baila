@@ -58,11 +58,3 @@ Create user:
 
 Debug:
 ![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/debug.PNG "Debug")
-
-
-
-# Developer Note
-
-Task-Aufruf: gate.php?hwid=botHWID&os=botOS&pwd=123456
-Plugin-Aufruf: gate.php?hwid=botHWID&os=botOS&pwd=123456&plugin-param=bla
-Debug-Aufruf: gate.php?err=Error&os=botOS&pwd=123456
