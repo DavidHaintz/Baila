@@ -149,6 +149,8 @@ else
 		include_once('pages/users.php');
 	elseif (isset($_GET['p']) && $_GET['p'] == "debug")
 		include_once('pages/debug.php');
+	elseif (isset($_GET['p']) && $_GET['p'] == "update")
+		include_once('pages/update.php');
 	elseif (isset($_GET['p']) && $_GET['p'] == "logout")
 	{
 		session_start();

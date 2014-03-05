@@ -46,6 +46,7 @@ foreach (scandir('modules') as $dir)
 	<li <?=((isset($_GET['p']) && $_GET['p'] == 'settings') ? 'class="active"' : '')?>><a href="index.php?p=settings">Settings</a></li>
 	<li <?=((isset($_GET['p']) && $_GET['p'] == 'users') ? 'class="active"' : '')?>><a href="index.php?p=users">Users</a></li>
 	<li <?=((isset($_GET['p']) && $_GET['p'] == 'debug') ? 'class="active"' : '')?>><a href="index.php?p=debug">Debug</a></li>
+	<li <?=((isset($_GET['p']) && $_GET['p'] == 'update') ? 'class="active"' : '')?>><a href="index.php?p=update">Update</a></li>
 	<li <?=((isset($_GET['p']) && $_GET['p'] == 'logout') ? 'class="active"' : '')?>><a href="index.php?p=logout">Logout</a></li>
 	</ul>
 	</div><!--/.nav-collapse -->
