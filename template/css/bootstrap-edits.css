@@ -1,0 +1,10 @@
+.btn.nicesize {
+	padding: 6px 8px 4px 6px!important;
+}
+
+.table.table-vcenter th,
+.table.table-vcenter td {
+   border-top: none!important;
+   border-bottom: 1px solid #DDDDDD;
+   vertical-align: middle!important;
+}

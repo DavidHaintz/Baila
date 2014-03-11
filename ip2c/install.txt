@@ -1,2 +1,0 @@
-Info and sample code here:
-http://phpweby.com/software/ip2country
