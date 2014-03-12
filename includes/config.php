@@ -1,30 +1,28 @@
 <?php
-/**********************************/
-/************* Config *************/
-/**********************************/
 
-$db_host	= "localhost";
-$db_name	= "webpanel";
-$db_user	= "root";
-$db_pass	= "";
+if(!isset($GLOBALS['in_script']) && !isset($GLOBALS['in_gate'])) die("Direct access not allowed!");
 
-$bot_pass	= "123456";
+$db_host = "localhost";
+$db_user = "root";
+$db_pass = "";
+$db_name = "baila";
 
+$bot_pass = "123456";
+$bot_name = "S3 Bot";
 
-/**********************************/
-/************** Code **************/
-/**********************************/
+$conn_int = 5;
+$dead_int = 5;
 
-$bot_name		= "Baila";
-$conn_int		= 5;
-$dead_int		= 5;
+/*** DONT EDIT BELOW THIS LINE ***/
+
 try 
 { 
-    $db_conn = new PDO("mysql:host=$db_host;dbname=$db_name",$db_user,$db_pass);
+    $db_conn = new PDO('mysql:host='.$db_host.';dbname=',$db_user, $db_pass); 
 	$db_conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } 
 catch(PDOException $e) 
 { 
-    echo "<div id=\"error\">Error connecting:".$e->getMessage()."</div>"; 
+	die(errorMsg($e->getMessage(), 'danger', true));
 }
+
 ?>
