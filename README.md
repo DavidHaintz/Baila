@@ -4,12 +4,13 @@ Mit dem Projekt Baila habe ich das nun realisiert und ein sicheres Webpanel mit 
 Ein paar XSS sind zwar noch möglich, doch das nur vom Adminpanel aus. Und wer schon einmal da drin ist, wird keine XSS-Attacke starten. Aber natürlich werden die auch bald gefixt.
 
 **Features:**
-- Integriertes IP2Country
 - Taskmanagement
 - Usermanagement
-- Bots können einen User zugeordnet werden
+- Integriertes IP2Country
 - 3 Berechtigungsstufen
-- Debug-Modul (ermöglicht einfachere Auswertung der Fehler auf Remote-PCs)
+- Bots können einem User zugeordnet werden
+- Benötigte Berechtigungsstufe jeder Seite kann angepasst werden
+- Debug-Modul (ermöglicht einfache Auswertung der Fehler auf Remote-PCs)
 - Erweiterbar durch Module
 
 **Security:**
