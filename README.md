@@ -14,6 +14,9 @@ Mit dem Projekt Baila habe ich das nun realisiert und ein sicheres Webpanel mit 
 - Verwendet prepared Statements für Datenbankabfragen (schnell & sicher)
 - Kodiert alle von außen kommenden Daten (keine XSS)
 
+**Modules**
+- Stealer
+
 
 # Screenshots
 Login:

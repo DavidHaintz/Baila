@@ -218,4 +218,4 @@ pip-log.txt
 ##############
 ## Modules
 ##############
-modules/*
+#modules/*

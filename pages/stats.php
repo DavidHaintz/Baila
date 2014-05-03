@@ -95,9 +95,9 @@ $stmt = db_query("SELECT
 $row = $stmt->fetch();
 $cnt = $row['online'] + $row['offline'] + $row['dead'];
 $TEMPLATE['text'] .= '			<tr>
-									<td>'.$row['online'].' ('.($row['online'] / $cnt * 100).'%)</td>
-									<td>'.$row['offline'].' ('.($row['offline'] / $cnt * 100).'%)</td>
-									<td>'.$row['dead'].' ('.($row['dead'] / $cnt * 100).'%)</td>
+									<td>'.$row['online'].' ('.@($row['online'] / $cnt * 100).'%)</td>
+									<td>'.$row['offline'].' ('.@($row['offline'] / $cnt * 100).'%)</td>
+									<td>'.$row['dead'].' ('.@($row['dead'] / $cnt * 100).'%)</td>
 									<td>'.$cnt.'</td>
 								</tr>
 							</table>
