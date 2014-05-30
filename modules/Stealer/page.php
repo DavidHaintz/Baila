@@ -1,5 +1,5 @@
 <?php
-$TEMPLATE['site'] = "CryptoLocker";
+$TEMPLATE['site'] = "Stealer";
 
 $install = false;
 $TEMPLATE['text'] = '';
