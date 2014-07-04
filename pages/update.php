@@ -14,11 +14,14 @@ else
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_USERAGENT, "Baila Webpanel");
 		$response = curl_exec($ch);
+		$error = curl_error($ch);
 		curl_close($ch);
 	}
 	else
-		$response = file_get_contents($url);
+		$TEMPLATE['text'] = "Error cURL not installed.";
 	
 	
 	if ($response)
@@ -39,7 +42,7 @@ else
 		$TEMPLATE['text'] .= '</table>';
 	}
 	else
-		$TEMPLATE['text'] = "Error connecting to GitHub.";
+		$TEMPLATE['text'] = "Error connecting to GitHub.<br /><br />".$error;
 }
 					
 $TEMPLATE['js'] = '';
