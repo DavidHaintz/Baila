@@ -8,6 +8,7 @@ Mit dem Projekt Baila habe ich das nun realisiert und ein sicheres Webpanel mit 
 - Bots können einen User zugeordnet werden
 - 3 Berechtigungsstufen
 - Debug-Modul (ermöglicht einfachere Auswertung der Fehler auf Remote-PCs)
+- Updates im Webpanel
 - Erweiterbar durch Module
 
 **Security:**
