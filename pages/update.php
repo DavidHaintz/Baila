@@ -20,9 +20,8 @@ else
 		$response = file_get_contents($url);
 	
 	
-	
 	$dom = new DOMDocument;
-	if (@$dom->loadHTML($response))
+	if ($response && @$dom->loadHTML($response))
 	{
 		$divs = $dom->getElementsByTagName('div');
 		$div = null;
