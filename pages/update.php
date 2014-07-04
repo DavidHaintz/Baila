@@ -5,7 +5,8 @@ if (getRole() > 1)
 else
 {
 	$TEMPLATE['site'] = "Updates";
-	$url = 'https://github.com/IRET0x00/Baila/commits/master';
+	$url = 'https://api.github.com/repos/IRET0x00/Baila/commits';
+	//$url = 'http://localhost/commits';
 	if (function_exists('curl_init'))
 	{
 		$ch = curl_init();
@@ -20,42 +21,20 @@ else
 		$response = file_get_contents($url);
 	
 	
-	$dom = new DOMDocument;
-	if ($response && @$dom->loadHTML($response))
+	if ($response)
 	{
-		$divs = $dom->getElementsByTagName('div');
-		$div = null;
-		for ($i = 0; $i < $divs->length; $i++)
-		{
-			if (@$divs->item($i)->attributes->getNamedItem('class')->value == "js-navigation-container js-active-navigation-container")
-			{
-				$div = $divs->item($i);
-				break;
-			}
-		}
-		$heads = $div->getElementsByTagName('h3');
-		$ols = $div->getElementsByTagName('ol');
-		
+		$data = json_decode($response);
 		$TEMPLATE['text'] = '<table class="table table-hover">
 								<tr>
 									<th>Date</th>
 									<th>Description</th>
 								</tr>';
-		for ($i = 0; $i < $heads->length; $i++)
+		foreach ($data as $commit)
 		{
-			$lis = $ols->item($i)->getElementsByTagName('li');
-			$TEMPLATE['text'] .= '<tr>
-									<td>'.$heads->item($i)->textContent.'</td>
-									<td>
-										<ul style="list-style: none;">';
-			for ($j = 0; $j < $lis->length; $j++)
-			{
-				$a = $lis->item($j)->getElementsByTagName('p')->item(0)->getElementsByTagName('a')->item(0);
-				$TEMPLATE['text'] .= '		<li>'.$a->textContent.'</li>';
-			}
-			$TEMPLATE['text'] .= '		</ul>
-									</td>
-								  </tr>';
+			$TEMPLATE['text'] .= "<tr>
+									<td>".date("d.m.Y H:i", strtotime($commit->commit->author->date))."</td>
+									<td><a href=\"{$commit->html_url}\" target=\"_blank\">{$commit->commit->message}</a></td>
+								</tr>";
 		}
 		$TEMPLATE['text'] .= '</table>';
 	}
