@@ -1,5 +1,5 @@
 <?php
-$TEMPLATE['site'] = "Statistics";
+$TEMPLATE['site'] = "Bots";
 $TEMPLATE['text'] = '<table class="table table-hover">
 						<tr>
 							<th>#</th>
