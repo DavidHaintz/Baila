@@ -19,7 +19,6 @@ $bot_name		= "Baila";
 $conn_int		= 5;
 $dead_int		= 5;
 $tables         = array("users", "settings", "sessions", "bots", "tasks", "sentTasks", "error");
-$last_update    = "06.02.2018 17:01";
 
 
 try 

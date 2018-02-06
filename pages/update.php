@@ -1,4 +1,5 @@
 <?php
+$last_update    = "06.02.2018 17:07";
 
 if (getRole() > 1)
 	$TEMPLATE['text'] = '<div class="alert alert-danger">'.$GLOBALS['LANG']['err_no_permission'].'</div>';
@@ -65,7 +66,7 @@ else
                 $commit = $data[$i];
                 $commit_date = date("d.m.Y H:i", strtotime($commit->commit->author->date));
                 $next_date = date("d.m.Y H:i", strtotime($data[$i+1]->commit->author->date));
-                $TEMPLATE['text'] .= "<tr".($GLOBALS['last_update'] == $next_date ? ' class="success"' : '').">
+                $TEMPLATE['text'] .= "<tr".($GLOBALS['last_update'] == $next_date ? ' class="'.($i == 0 ? "success" : "danger").'"' : '').">
                                         <td>$commit_date</td>
                                         <td><a href=\"{$commit->html_url}\" target=\"_blank\">".htmlentities($commit->commit->message)."</a></td>
                                     </tr>";
