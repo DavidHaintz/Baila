@@ -1,6 +1,26 @@
 <?php
 include('includes/all.inc');
 
+// include or set language
+@session_start();
+if (isset($_GET['changeLang'])) {
+    if (file_exists("lang/".$_GET['changeLang'].".php"))
+        $_SESSION['lang'] = $_GET['changeLang'];
+    header("Location: ./");
+}
+include_once("lang/".(isset($_SESSION['lang']) ? basename($_SESSION['lang']).".php" : "en.php"));
+
+
+// group by fix for mysql 5.6+
+$stmt = db_query("SELECT @@GLOBAL.sql_mode");
+$row = $stmt->fetch();
+if (strpos($row[0], "ONLY_FULL_GROUP_BY") !== false) {
+    $sqlMode = str_replace(array('ONLY_FULL_GROUP_BY,', ',ONLY_FULL_GROUP_BY'), '', $row[0]);
+    db_query("SET @@GLOBAL.sql_mode = '$sqlMode'");
+    header("Refresh: 0");
+}
+
+
 // Check installation
 if (isset($_GET['install'])) {
     $install = false;
@@ -67,8 +87,8 @@ if (isset($_GET['install'])) {
                 `id` int(11) NOT NULL AUTO_INCREMENT,
                 `countries` TEXT,
                 `command` varchar(255) NOT NULL,
-                `start` TIMESTAMP NOT NULL default 0,
-                `stop` TIMESTAMP NOT NULL default 0,
+                `start` TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,
+                `stop` TIMESTAMP NOT NULL default CURRENT_TIMESTAMP,
                 `count` int(10) NOT NULL default 0,
                 `received` int(10) NOT NULL default 0,
                 `executed` int(10) NOT NULL default 0,

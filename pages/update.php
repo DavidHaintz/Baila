@@ -4,9 +4,9 @@ if (getRole() > 1)
 	$TEMPLATE['text'] = '<div class="alert alert-danger">You don\'t have permission to see this page.</div>';
 else
 {
-	$TEMPLATE['site'] = "Updates";
+	$TEMPLATE['site'] = $GLOBALS['LANG']['updates'];
 	$url = 'https://api.github.com/repos/IRET0x00/Baila/commits';
-	//$url = 'http://localhost/commits';
+    
 	if (function_exists('curl_init'))
 	{
 		$ch = curl_init();
@@ -17,11 +17,12 @@ else
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($ch, CURLOPT_USERAGENT, "Baila Webpanel");
 		$response = curl_exec($ch);
-		$error = curl_error($ch);
+        if (!$response)
+		  $error = curl_error($ch);
 		curl_close($ch);
 	}
 	else
-		$TEMPLATE['text'] = "Error cURL not installed.";
+		$TEMPLATE['text'] = $GLOBALS['LANG']['err_curl_not_installed'];
 	
 	
 	if ($response)
@@ -29,8 +30,8 @@ else
 		$data = json_decode($response);
 		$TEMPLATE['text'] = '<table class="table table-hover">
 								<tr>
-									<th>Date</th>
-									<th>Description</th>
+									<th>'.$GLOBALS['LANG']['date'].'</th>
+									<th>'.$GLOBALS['LANG']['description'].'</th>
 								</tr>';
 		foreach ($data as $commit)
 		{
@@ -42,7 +43,7 @@ else
 		$TEMPLATE['text'] .= '</table>';
 	}
 	else
-		$TEMPLATE['text'] = "Error connecting to GitHub.<br /><br />".$error;
+		$TEMPLATE['text'] = $GLOBALS['LANG']['err_curl_connect_github']."<br /><br />".$error;
 }
 					
 $TEMPLATE['js'] = '';
