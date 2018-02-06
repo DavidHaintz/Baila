@@ -10,6 +10,7 @@ Baila is a web-based administration interface (web panel) for managing multiple 
 - Updates listed in web panel
 - Extendible with modules
 - Multi Language Support
+- Multi theme support
 
 **Security:**
 - Uses prepared statements for database queries (fast & secure)
