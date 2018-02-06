@@ -1,11 +1,10 @@
-Die Idee ist mir gekommen, als Atrax mit dem Webpanel vom Liphyria Bot aufgetaucht ist. Ein Webpanel für alle.
-Mit dem Projekt Baila habe ich das nun realisiert und ein sicheres Webpanel mit einfacher Erweiterungsmöglichkeit geschrieben.
+Baila ist eine webbasierte Administrationsoberfläche (Webpanel) zur Verwaltung mehrer Computer mit einfacher Erweiterungsmöglichkeit.
 
 **Features:**
 - Integriertes IP2Country
 - Taskmanagement
 - Usermanagement
-- Bots können einen User zugeordnet werden
+- Computer/Bots können einem User zugeordnet werden
 - 3 Berechtigungsstufen
 - Debug-Modul (ermöglicht einfachere Auswertung der Fehler auf Remote-PCs)
 - Updates im Webpanel
@@ -15,7 +14,7 @@ Mit dem Projekt Baila habe ich das nun realisiert und ein sicheres Webpanel mit 
 - Verwendet prepared Statements für Datenbankabfragen (schnell & sicher)
 - Kodiert alle von außen kommenden Daten (keine XSS)
 
-**Modules**
+**Module**
 - Stealer
 
 
@@ -24,8 +23,8 @@ Login:
 ![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/login.PNG "Login")
 
 
-Stats Infections:
-![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/stats1.PNG "Stats Infections")
+Stats Lately added Computer:
+![alt text](https://github.com/IRET0x00/Baila/raw/master/screens/stats1.PNG "Stats Lately added Computer")
 
 
 Stats Countries:

