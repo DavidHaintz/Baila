@@ -31,7 +31,8 @@ if (!$install)
 		$TEMPLATE['text'] .= '<div class="alert alert-info">Cleared all entries.</div>';
 	}
 
-
+	$LIMIT = isset($_GET['n']) ? sprintf("%d, %d", intval($_GET['n']), (intval($_GET['n']) + 10)) : '0, 10';
+	$stmt = db_query("SELECT *, (SELECT `country` FROM `bots` WHERE `hwid` = `mining_data`.`hwid`) AS `country` FROM `mining_data` LIMIT $LIMIT");
 	$TEMPLATE['text'] .= '<a class="btn btn-danger" href="?p=module&m=Mining&a=clear"><i class="glyphicon glyphicon-trash"></i>&nbsp;Delete all Entries</a>
 						<div style="height: 5px;"></div>
 						<table class="table table-hover">
@@ -44,11 +45,6 @@ if (!$install)
 								<th>Date</th>
 								<th></th>
 							</tr>';
-	$search = isset($_GET['search']) ? $_GET['search'] : 'x';
-	$WHERE = isset($_GET['search']) ? "`website` LIKE concat('%', :1, '%')" : ':1 = :1';
-	$LIMIT = isset($_GET['n']) ? sprintf("%d, %d", intval($_GET['n']), (intval($_GET['n']) + 10)) : '0, 10';
-	$stmt = db_query("SELECT *, (SELECT `country` FROM `bots` WHERE `hwid` = `mining_data`.`hwid`) AS `country` FROM `mining_data` WHERE $WHERE LIMIT $LIMIT",
-							$search);
 	while ($row = $stmt->fetch())
 	{
 		$TEMPLATE['text'] .= "			<tr>
