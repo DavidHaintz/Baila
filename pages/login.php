@@ -10,6 +10,6 @@ if ($_POST && isset($_POST['user']) && isset($_POST['pwd']))
 		header("Location: index.php");
 	}
 	else
-		$TEMPLATE['alert'] = '<div class="alert alert-danger">Wrong username or password!</div>';
+		$TEMPLATE['alert'] = '<div class="alert alert-danger">'.$GLOBALS['LANG']['wrong_login'].'</div>';
 }
 ?>

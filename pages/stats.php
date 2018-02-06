@@ -1,10 +1,10 @@
 <?php
-$TEMPLATE['site'] = "Statistics";
+$TEMPLATE['site'] = $GLOBALS['LANG']['stats'];
 $TEMPLATE['text'] = '<ul id="stats" class="nav nav-tabs">
-						<li class="active"><a href="#infects" data-toggle="tab">Last infections</a></li>
-						<li><a href="#countries" data-toggle="tab">Countries</a></li>
-						<li><a href="#os" data-toggle="tab">OSes</a></li>
-						<li><a href="#onoff" data-toggle="tab">Online/Offline</a></li>
+						<li class="active"><a href="#infects" data-toggle="tab">'.$GLOBALS['LANG']['last_infections'].'</a></li>
+						<li><a href="#countries" data-toggle="tab">'.$GLOBALS['LANG']['countries'].'</a></li>
+						<li><a href="#os" data-toggle="tab">'.$GLOBALS['LANG']['oses'].'</a></li>
+						<li><a href="#onoff" data-toggle="tab">'.$GLOBALS['LANG']['on_off'].'</a></li>
 					</ul>
 					<div id="statsContent" class="tab-content">
 						<div class="tab-pane fade in active" id="infects">
@@ -12,9 +12,9 @@ $TEMPLATE['text'] = '<ul id="stats" class="nav nav-tabs">
 								<table class="table table-hover">
 									<tr>
 										<th>#</th>
-										<th>Country</th>
-										<th>OS</th>
-										<th>Date</th>
+										<th>'.$GLOBALS['LANG']['country'].'</th>
+										<th>'.$GLOBALS['LANG']['os'].'</th>
+										<th>'.$GLOBALS['LANG']['date'].'</th>
 									</tr>';
 $stmt = db_query("SELECT *,
 					(SELECT `bots`.`date` >= CURRENT_TIMESTAMP - INTERVAL :2 MINUTE) as `online`,
@@ -36,8 +36,8 @@ $TEMPLATE['text'] .= '			</table>
 							<div class="panel panel-default">
 							<table class="table table-hover">
 									<tr>
-										<th>Country</th>
-										<th>Count</th>
+										<th>'.$GLOBALS['LANG']['country'].'</th>
+										<th>'.$GLOBALS['LANG']['count'].'</th>
 										<th>%</th>
 									</tr>';
 $stmt = db_query("SELECT `country`, COUNT(`country`) AS `cnt`,
@@ -59,8 +59,8 @@ $TEMPLATE['text'] .= '		</table>
 							<div class="panel panel-default">
 							<table class="table table-hover">
 									<tr>
-										<th>OS</th>
-										<th>Count</th>
+										<th>'.$GLOBALS['LANG']['os'].'</th>
+										<th>'.$GLOBALS['LANG']['count'].'</th>
 										<th>%</th>
 									</tr>';
 $stmt = db_query("SELECT `os`, COUNT(`os`) AS `cnt`,
@@ -82,10 +82,10 @@ $TEMPLATE['text'] .= '		</table>
 							<div class="panel panel-default">
 							<table class="table table-hover">
 									<tr>
-										<th>Online</th>
-										<th>Offline</th>
-										<th>Dead</th>
-										<th>Total</th>
+										<th>'.$GLOBALS['LANG']['online'].'</th>
+										<th>'.$GLOBALS['LANG']['offline'].'</th>
+										<th>'.$GLOBALS['LANG']['dead'].'</th>
+										<th>'.$GLOBALS['LANG']['total'].'</th>
 									</tr>';
 $stmt = db_query("SELECT
 (SELECT COUNT(`id`) FROM `bots` WHERE (`uid` = :1 OR `uid` = -1) AND `date` >= CURRENT_TIMESTAMP - INTERVAL :2 MINUTE) as `online`,

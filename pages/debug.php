@@ -1,7 +1,7 @@
 <?php
-$TEMPLATE['site'] = "Debug";
+$TEMPLATE['site'] = $GLOBALS['LANG']['debug'];
 if (getRole() > 1)
-	$TEMPLATE['text'] = '<div class="alert alert-danger">You don\'t have permission to see this page.</div>';
+	$TEMPLATE['text'] = '<div class="alert alert-danger">'.$GLOBALS['LANG']['err_no_permission'].'</div>';
 else
 {
 	$TEMPLATE['text'] = '';

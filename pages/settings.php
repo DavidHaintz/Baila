@@ -1,7 +1,7 @@
 <?php
-$TEMPLATE['site'] = "Settings";
+$TEMPLATE['site'] = $GLOBALS['LANG']['settings'];
 if (getRole() > 1)
-	$TEMPLATE['text'] = '<div class="alert alert-danger">You don\'t have permission to see this page.</div>';
+	$TEMPLATE['text'] = '<div class="alert alert-danger">'.$GLOBALS['LANG']['err_no_permission'].'</div>';
 else
 {
 	$TEMPLATE['text'] = '';
@@ -11,7 +11,7 @@ else
 		{
 			$key = str_replace("_", " ", $key);
 			db_query("UPDATE `settings` SET `value` = :1 WHERE `name` = :2", $val, $key);
-			$TEMPLATE['text'] .= "Updated ".htmlentities($key).".<br />";
+			$TEMPLATE['text'] .= $GLOBALS['LANG']['updated']." ".htmlentities($key).".<br />";
 		}
 	}
 	$TEMPLATE['text'] .= '<table>
@@ -22,7 +22,7 @@ else
 									<td>{$row['name']}</td>
 									<td style=\"padding-left: 10px;\"><input type=\"text\" name=\"".htmlentities($row['name'])."\" value=\"".htmlentities($row['value'])."\" /></td>
 								</tr>";
-	$TEMPLATE['text'] .= '<tr><td></td><td style="float:right"><input type="submit" value="Save" /></td></tr>
+	$TEMPLATE['text'] .= '<tr><td></td><td style="float:right"><input type="submit" value="'.$GLOBALS['LANG']['save'].'" /></td></tr>
 						</form></table>';
 }
 $TEMPLATE['js'] = '';

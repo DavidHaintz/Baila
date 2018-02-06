@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
 
-	<title>Signin - <?=$GLOBALS['bot_name']?> <?=$GLOBALS['LANG']['webpanel']?></title>
+	<title><?=$GLOBALS['LANG']['signin']?> - <?=$GLOBALS['bot_name']?> <?=$GLOBALS['LANG']['webpanel']?></title>
 
 
 	<link href="template/css/bootstrap.css" rel="stylesheet">
