@@ -9,7 +9,7 @@ else
 		$TEMPLATE['text'] = '';
 		if ($_POST && isset($_POST['user']) && isset($_POST['pwd']) && isset($_POST['role']))
 		{
-			db_query("INSERT INTO `users`(`user`, `pwd`, `role`) VALUES(:1, :2, :3)", $_POST['user'], hash('sha256', $_POST['pwd']), $_POST['role']);
+			db_query("INSERT INTO `users`(`user`, `pwd`, `role`) VALUES(:1, :2, :3)", htmlentities($_POST['user']), hash('sha256', $_POST['pwd']), intval($_POST['role']));
 			$TEMPLATE['text'] .= '<div class="alert alert-success">'.$GLOBALS['LANG']['added'].' '.$_POST['user'].'.</div>';
 		}
 		$TEMPLATE['site'] = "Add user";
@@ -30,13 +30,13 @@ else
 		if ($_POST && isset($_POST['user']) && isset($_POST['pwd']) && isset($_POST['role']))
 		{
 			if (!empty($_POST['pwd']))
-				db_query("UPDATE `users` SET `pwd` = :1, `role` = :2 WHERE `id` = :3", hash('sha256', $_POST['pwd']), $_POST['role'], $_GET['id']);
+				db_query("UPDATE `users` SET `pwd` = :1, `role` = :2 WHERE `id` = :3", hash('sha256', $_POST['pwd']), intval($_POST['role']), intval($_GET['id']));
 			else
-				db_query("UPDATE `users` SET `role` = :1 WHERE `id` = :2", $_POST['role'], $_GET['id']);
+				db_query("UPDATE `users` SET `role` = :1 WHERE `id` = :2", intval($_POST['role']), intval($_GET['id']));
 			$TEMPLATE['text'] .= '<div class="alert alert-success">Updated '.$_POST['user'].'.</div>';
 		}
 		$TEMPLATE['site'] = $GLOBALS['LANG']['edit_user'];
-		$stmt = db_query("SELECT * FROM `users` WHERE `id` = :1", $_GET['id']);
+		$stmt = db_query("SELECT * FROM `users` WHERE `id` = :1", intval($_GET['id']));
 		if ($stmt->rowCount() > 0)
 		{
 			$row = $stmt->fetch();
@@ -59,11 +59,11 @@ else
 		$TEMPLATE['text'] = '';
 		if (isset($_GET['a']) && $_GET['a'] == "del" && isset($_GET['id']))
 		{
-			$stmt = db_query("SELECT `user` FROM `users` WHERE `id` = :1", $_GET['id']);
+			$stmt = db_query("SELECT `user` FROM `users` WHERE `id` = :1", intval($_GET['id']));
 			if ($stmt->rowCount() > 0)
 			{
 				$row = $stmt->fetch();
-				db_query("DELETE FROM `users` WHERE `id` = :1", $_GET['id']);
+				db_query("DELETE FROM `users` WHERE `id` = :1", intval($_GET['id']));
 				$TEMPLATE['text'] .= '<div class="alert alert-info">'.$GLOBALS['LANG']['deleted'].' '.$row['user'].'.</div>';
 			}
 			else

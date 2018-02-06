@@ -63,7 +63,7 @@ else
             {
                 $TEMPLATE['text'] .= "<tr>
                                         <td>".date("d.m.Y H:i", strtotime($commit->commit->author->date))."</td>
-                                        <td><a href=\"{$commit->html_url}\" target=\"_blank\">{$commit->commit->message}</a></td>
+                                        <td><a href=\"{$commit->html_url}\" target=\"_blank\">".htmlentities($commit->commit->message)."</a></td>
                                     </tr>";
             }
             $TEMPLATE['text'] .= '</table>';
