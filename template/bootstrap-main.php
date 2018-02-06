@@ -28,26 +28,31 @@
 	</div>
 	<div class="collapse navbar-collapse">
 	<ul class="nav navbar-nav">
-	<li <?=((!isset($_GET['p']) || $_GET['p'] == 'stats') ? 'class="active"' : '')?>><a href="index.php?p=stats"><?=$GLOBALS['LANG']['stats']?></a></li>
-	<li <?=((isset($_GET['p']) && $_GET['p'] == 'bots') ? 'class="active"' : '')?>><a href="index.php?p=bots"><?=$GLOBALS['LANG']['bots']?></a></li>
-	<li <?=((isset($_GET['p']) && $_GET['p'] == 'tasks') ? 'class="active"' : '')?>><a href="index.php?p=tasks"><?=$GLOBALS['LANG']['tasks']?></a></li>
-	<li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$GLOBALS['LANG']['modules']?> <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-<?php
-foreach (scandir('modules') as $dir)
-{
-	if ($dir != '.' && $dir != '..')
-		echo '<li><a href="?p=module&m='.$dir.'">'.$dir.'</a></li>';
-}
-?>
-        </ul>
-      </li>
-	<li <?=((isset($_GET['p']) && $_GET['p'] == 'settings') ? 'class="active"' : '')?>><a href="index.php?p=settings"><?=$GLOBALS['LANG']['settings']?></a></li>
-	<li <?=((isset($_GET['p']) && $_GET['p'] == 'users') ? 'class="active"' : '')?>><a href="index.php?p=users"><?=$GLOBALS['LANG']['users']?></a></li>
-	<li <?=((isset($_GET['p']) && $_GET['p'] == 'debug') ? 'class="active"' : '')?>><a href="index.php?p=debug"><?=$GLOBALS['LANG']['debug']?></a></li>
-	<li <?=((isset($_GET['p']) && $_GET['p'] == 'update') ? 'class="active"' : '')?>><a href="index.php?p=update"><?=$GLOBALS['LANG']['update']?></a></li>
-	<li <?=((isset($_GET['p']) && $_GET['p'] == 'logout') ? 'class="active"' : '')?>><a href="index.php?p=logout"><?=$GLOBALS['LANG']['logout']?></a></li>
+        <li <?=((!isset($_GET['p']) || $_GET['p'] == 'stats') ? 'class="active"' : '')?>><a href="index.php?p=stats"><?=$GLOBALS['LANG']['stats']?></a></li>
+        <li <?=((isset($_GET['p']) && $_GET['p'] == 'bots') ? 'class="active"' : '')?>><a href="index.php?p=bots"><?=$GLOBALS['LANG']['bots']?></a></li>
+        <li <?=((isset($_GET['p']) && $_GET['p'] == 'tasks') ? 'class="active"' : '')?>><a href="index.php?p=tasks"><?=$GLOBALS['LANG']['tasks']?></a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$GLOBALS['LANG']['modules']?> <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+    <?php
+    foreach (scandir('modules') as $dir)
+    {
+        if ($dir != '.' && $dir != '..')
+            echo '<li><a href="?p=module&m='.$dir.'">'.$dir.'</a></li>';
+    }
+    ?>
+            </ul>
+          </li>
+        <li <?=((isset($_GET['p']) && $_GET['p'] == 'settings') ? 'class="active"' : '')?>><a href="index.php?p=settings"><?=$GLOBALS['LANG']['settings']?></a></li>
+        <li <?=((isset($_GET['p']) && $_GET['p'] == 'users') ? 'class="active"' : '')?>><a href="index.php?p=users"><?=$GLOBALS['LANG']['users']?></a></li>
+        <li <?=((isset($_GET['p']) && $_GET['p'] == 'debug') ? 'class="active"' : '')?>><a href="index.php?p=debug"><?=$GLOBALS['LANG']['debug']?></a></li>
+        <li <?=((isset($_GET['p']) && $_GET['p'] == 'update') ? 'class="active"' : '')?>><a href="index.php?p=update"><?=$GLOBALS['LANG']['update']?></a></li>
+        <li <?=((isset($_GET['p']) && $_GET['p'] == 'logout') ? 'class="active"' : '')?>><a href="index.php?p=logout"><?=$GLOBALS['LANG']['logout']?></a></li>
+    <?php
+        foreach (glob('lang/*.php') as $file) {
+            echo '<li><a class="dropdown-item" href="?changeLang='.substr(basename($file), 0, -4).'"><img src="img/flags/'.strtolower(substr(basename($file), 0, -4)).'.png"></a></li>';
+        }
+    ?>
 	</ul>
 	</div><!--/.nav-collapse -->
 	</div>

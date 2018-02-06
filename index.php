@@ -8,7 +8,7 @@ if (isset($_GET['changeLang'])) {
         $_SESSION['lang'] = $_GET['changeLang'];
     header("Location: ./");
 }
-include_once("lang/".(isset($_SESSION['lang']) ? basename($_SESSION['lang']).".php" : "en.php"));
+include_once("lang/".(isset($_SESSION['lang']) ? basename($_SESSION['lang']).".php" : "us.php"));
 
 
 // group by fix for mysql 5.6+
