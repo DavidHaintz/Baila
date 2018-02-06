@@ -1,15 +1,6 @@
 <?php
 include('includes/all.inc');
 
-// include or set language
-@session_start();
-if (isset($_GET['changeLang'])) {
-    if (file_exists("lang/".$_GET['changeLang'].".php"))
-        $_SESSION['lang'] = $_GET['changeLang'];
-    header("Location: ./");
-}
-include_once("lang/".(isset($_SESSION['lang']) ? basename($_SESSION['lang']).".php" : "us.php"));
-
 
 // group by fix for mysql 5.6+
 $stmt = db_query("SELECT @@GLOBAL.sql_mode");
@@ -19,6 +10,16 @@ if (strpos($row[0], "ONLY_FULL_GROUP_BY") !== false) {
     db_query("SET @@GLOBAL.sql_mode = '$sqlMode'");
     header("Refresh: 0");
 }
+
+
+// include or set language
+@session_start();
+if (isset($_GET['changeLang'])) {
+    if (file_exists("lang/".$_GET['changeLang'].".php"))
+        $_SESSION['lang'] = $_GET['changeLang'];
+    header("Location: ./");
+}
+include_once("lang/".(isset($_SESSION['lang']) ? basename($_SESSION['lang']).".php" : "us.php"));
 
 
 // Check installation
