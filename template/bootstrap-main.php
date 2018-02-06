@@ -64,7 +64,7 @@
 		<?=$TEMPLATE['text']?>
 	</div>
 	<div style="text-align: center; width: 100%;">
-	Powered by <a href="https://github.com/IRET0x00/Baila">Baila</a>
+	Powered by <a href="https://github.com/DavidHaintz/Baila">Baila</a>
 	</div>
 
 	</div><!-- /.container -->
