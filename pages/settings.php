@@ -20,7 +20,7 @@ else
 	while ($row = $stmt->fetch())
 		$TEMPLATE['text'] .= "	<tr>
 									<td>{$row['name']}</td>
-									<td style=\"padding-left: 10px;\"><input type=\"text\" name=\"{$row['name']}\" value=\"{$row['value']}\" /></td>
+									<td style=\"padding-left: 10px;\"><input type=\"text\" name=\"".htmlentities($row['name'])."\" value=\"".htmlentities($row['value'])."\" /></td>
 								</tr>";
 	$TEMPLATE['text'] .= '<tr><td></td><td style="float:right"><input type="submit" value="Save" /></td></tr>
 						</form></table>';
