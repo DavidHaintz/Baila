@@ -5,7 +5,7 @@ if (getRole() > 1)
 else
 {
 	$TEMPLATE['site'] = $GLOBALS['LANG']['updates'];
-	$url = 'https://api.github.com/repos/IRET0x00/Baila/commits';
+	$url = 'https://api.github.com/repos/DavidHaintz/Baila/commits';
     $response = false;
     
 	if (function_exists('curl_init'))
