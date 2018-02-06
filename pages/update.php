@@ -6,7 +6,7 @@ else
 {
 	$TEMPLATE['site'] = $GLOBALS['LANG']['updates'];
 	$url = 'https://api.github.com/repos/IRET0x00/Baila/commits';
-    $url = 'http://google.at';
+    $response = false;
     
 	if (function_exists('curl_init'))
 	{
@@ -21,35 +21,60 @@ else
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_USERAGENT, "Baila Webpanel");
 		$response = curl_exec($ch);
-        $info = curl_getinfo($ch);
-        if (!$response)
-		  $error = curl_error($ch);
+        $error = curl_error($ch);
 		curl_close($ch);
 	}
 	else
 		$TEMPLATE['text'] = $GLOBALS['LANG']['err_curl_not_installed'];
 	
-	
-	if ($response)
+    if ($response !== true && function_exists("file_get_contents")) {
+        // curl failed => try file_gets_contents
+        $opts = array(
+          'http'=>array(
+            'user_agent' => 'My company name',
+            'method'=>"GET",
+            'header'=> implode("\r\n", array(
+              'Content-type: text/plain;'
+            ))
+          )
+        );
+
+        $context = stream_context_create($opts);
+        $response = file_get_contents($url, false, $context);
+    }
+    
+	if ($response && !empty($response))
 	{
-        die($response);
-		$data = json_decode($response);
-		$TEMPLATE['text'] = '<table class="table table-hover">
-								<tr>
-									<th>'.$GLOBALS['LANG']['date'].'</th>
-									<th>'.$GLOBALS['LANG']['description'].'</th>
-								</tr>';
-		foreach ($data as $commit)
-		{
-			$TEMPLATE['text'] .= "<tr>
-									<td>".date("d.m.Y H:i", strtotime($commit->commit->author->date))."</td>
-									<td><a href=\"{$commit->html_url}\" target=\"_blank\">{$commit->commit->message}</a></td>
-								</tr>";
-		}
-		$TEMPLATE['text'] .= '</table>';
+        try {
+            $data = json_decode($response);
+            if (count($data) > 0)
+                $worked = true;
+        } catch (Exception $e) {
+            $TEMPLATE['text'] = $GLOBALS['LANG']['err_curl_connect_github'];
+        }
+        
+        if ($worked) {
+            $TEMPLATE['text'] = '<table class="table table-hover">
+                                    <tr>
+                                        <th>'.$GLOBALS['LANG']['date'].'</th>
+                                        <th>'.$GLOBALS['LANG']['description'].'</th>
+                                    </tr>';
+            foreach ($data as $commit)
+            {
+                $TEMPLATE['text'] .= "<tr>
+                                        <td>".date("d.m.Y H:i", strtotime($commit->commit->author->date))."</td>
+                                        <td><a href=\"{$commit->html_url}\" target=\"_blank\">{$commit->commit->message}</a></td>
+                                    </tr>";
+            }
+            $TEMPLATE['text'] .= '</table>';
+        }
+        else
+            $TEMPLATE['text'] = $GLOBALS['LANG']['err_curl_connect_github'];
 	}
-	else
-		$TEMPLATE['text'] = $GLOBALS['LANG']['err_curl_connect_github']."<br /><br />"."HTTP-Code: {$info["http_code"]}<br/>Error: $error<br /><br />Log:<br />$curl_log<br />".print_r($info, true);
+	else {
+		$TEMPLATE['text'] = $GLOBALS['LANG']['err_curl_connect_github']."<br /><br />Error: $error<br /><br />Log:<br />$curl_log<br />";
+		//$TEMPLATE['text'] = $GLOBALS['LANG']['err_curl_connect_github'];
+    }
 }
 					
 $TEMPLATE['js'] = '';
