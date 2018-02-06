@@ -16,7 +16,7 @@ Baila is a web-based administration interface (web panel) for managing multiple 
 - Encodes all external data (no XSS)
 
 **Modules**
-- Stealer
+- PWSafe
 
 
 # Screenshots
