@@ -35,10 +35,10 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$GLOBALS['LANG']['modules']?> <b class="caret"></b></a>
             <ul class="dropdown-menu">
     <?php
-    foreach (scandir('modules') as $dir)
+    foreach (glob('modules/*', GLOB_ONLYDIR) as $dir)
     {
         if ($dir != '.' && $dir != '..')
-            echo '<li><a href="?p=module&m='.$dir.'">'.$dir.'</a></li>';
+            echo '<li><a href="?p=module&m='.basename($dir).'">'.basename($dir).'</a></li>';
     }
     ?>
             </ul>
