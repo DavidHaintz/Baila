@@ -59,15 +59,16 @@ else
                                         <th>'.$GLOBALS['LANG']['date'].'</th>
                                         <th>'.$GLOBALS['LANG']['description'].'</th>
                                     </tr>';
-            $previous_date = "0";
-            foreach ($data as $commit)
+            
+            for ($i = 0; $i < count($data); $i++)
             {
+                $commit = $data[$i];
                 $commit_date = date("d.m.Y H:i", strtotime($commit->commit->author->date));
-                $TEMPLATE['text'] .= "<tr".($GLOBALS['last_update'] == $previous_date ? ' class="success"' : '').">
+                $next_date = date("d.m.Y H:i", strtotime($data[$i+1]->commit->author->date));
+                $TEMPLATE['text'] .= "<tr".($GLOBALS['last_update'] == $next_date ? ' class="success"' : '').">
                                         <td>$commit_date</td>
                                         <td><a href=\"{$commit->html_url}\" target=\"_blank\">".htmlentities($commit->commit->message)."</a></td>
                                     </tr>";
-                $previous_date = $commit_date;
             }
             $TEMPLATE['text'] .= '</table>';
         }
