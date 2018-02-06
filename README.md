@@ -1,5 +1,5 @@
 Die Idee ist mir gekommen, als Atrax mit dem Webpanel vom Liphyria Bot aufgetaucht ist. Ein Webpanel für alle.
-Mit dem Projekt Baila habe ich das nun realisiert und ein sicheres Webpanel mit einfacher Erweiterungsmöglichkeit geschrieben. Ein paar XSS sind zwar noch möglich, doch das nur vom Adminpanel aus. Und wer schon einmal da drin ist, wird keine XSS-Attacke starten. Aber natürlich werden die auch bald gefixt.
+Mit dem Projekt Baila habe ich das nun realisiert und ein sicheres Webpanel mit einfacher Erweiterungsmöglichkeit geschrieben.
 
 **Features:**
 - Integriertes IP2Country
