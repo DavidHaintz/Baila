@@ -72,8 +72,8 @@ else
             $TEMPLATE['text'] = $GLOBALS['LANG']['err_curl_connect_github'];
 	}
 	else {
-		$TEMPLATE['text'] = $GLOBALS['LANG']['err_curl_connect_github']."<br /><br />Error: $error<br /><br />Log:<br />$curl_log<br />";
-		//$TEMPLATE['text'] = $GLOBALS['LANG']['err_curl_connect_github'];
+		//$TEMPLATE['text'] = $GLOBALS['LANG']['err_curl_connect_github']."<br /><br />Error: $error<br /><br />Log:<br />$curl_log<br />";
+		$TEMPLATE['text'] = $GLOBALS['LANG']['err_curl_connect_github'];
     }
 }
 					
