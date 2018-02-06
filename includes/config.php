@@ -18,6 +18,9 @@ $bot_pass	= "123456";
 $bot_name		= "Baila";
 $conn_int		= 5;
 $dead_int		= 5;
+$tables         = array("users", "settings", "sessions", "bots", "tasks", "sentTasks", "error");
+
+
 try 
 { 
     $db_conn = new PDO("mysql:host=$db_host;dbname=$db_name",$db_user,$db_pass);
