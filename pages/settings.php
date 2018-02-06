@@ -19,10 +19,10 @@ else
 	$stmt = db_query("SELECT * FROM `settings`");
 	while ($row = $stmt->fetch())
 		$TEMPLATE['text'] .= "	<tr>
-									<td>{$row['name']}</td>
-									<td style=\"padding-left: 10px;\"><input type=\"text\" name=\"".htmlentities($row['name'])."\" value=\"".htmlentities($row['value'])."\" /></td>
+									<td>".htmlentities(ucfirst($row['name']))."</td>
+									<td style=\"padding-left: 10px;\"><input class=\"form-control\" type=\"text\" name=\"".htmlentities($row['name'])."\" value=\"".htmlentities($row['value'])."\" /></td>
 								</tr>";
-	$TEMPLATE['text'] .= '<tr><td></td><td style="float:right"><input type="submit" value="'.$GLOBALS['LANG']['save'].'" /></td></tr>
+	$TEMPLATE['text'] .= '<tr><td></td><td style="float:right"><input class="btn btn-md btn-primary" type="submit" value="'.$GLOBALS['LANG']['save'].'" /></td></tr>
 						</form></table>';
 }
 $TEMPLATE['js'] = '';
