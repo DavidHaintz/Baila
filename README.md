@@ -1,20 +1,21 @@
-Baila ist eine webbasierte Administrationsoberfläche (Webpanel) zur Verwaltung mehrer Computer mit einfacher Erweiterungsmöglichkeit.
+Baila is a web-based administration interface (web panel) for managing multiple computers which is easily extendible.
 
 **Features:**
-- Integriertes IP2Country
+- Integrated IP2Country
 - Taskmanagement
 - Usermanagement
-- Computer/Bots können einem User zugeordnet werden
-- 3 Berechtigungsstufen
-- Debug-Modul (ermöglicht einfachere Auswertung der Fehler auf Remote-PCs)
-- Updates im Webpanel
-- Erweiterbar durch Module
+- Computers/Bots can be assigned users
+- 3 access levels (Admin, User, Guest)
+- Debug-Modul (for simple evaluation of errors on remote computers)
+- Updates listed in web panel
+- Extendible with modules
+- Multi Language Support
 
 **Security:**
-- Verwendet prepared Statements für Datenbankabfragen (schnell & sicher)
-- Kodiert alle von außen kommenden Daten (keine XSS)
+- Uses prepared statements for database queries (fast & secure)
+- Encodes all external data (no XSS)
 
-**Module**
+**Modules**
 - Stealer
 
 
